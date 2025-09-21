@@ -8,17 +8,196 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
+/* Smooth scrolling for anchor links */
+html {
+    scroll-padding-top: 80px;
+}
+
+body {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    min-height: 100vh;
+}
+
+/* Remove all borders from header elements */
+header, header *, header *:before, header *:after {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure no borders on header links and buttons */
+header a, header button {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove any default browser styling */
+header a:focus, header button:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove any Tailwind default borders */
+header .border, header .border-*, header .ring, header .ring-* {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure clean header appearance */
+header {
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #8b5cf6, #ec4899);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #7c3aed, #db2777);
+}
+
+/* Image animations */
 img {
     width: 100%;
     height: auto;
-    transition: .3s ease all;
-    -webkit-transition: .3s ease all;
-    -moz-transition: .3s ease all;
-    -ms-transition: .3s ease all;
-    -o-transition: .3s ease all;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
 }
 
 img:hover {
-    scale: 102%;
+    transform: scale(1.05) translateY(-4px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+}
+
+/* Custom components */
+@layer components {
+    .movie-card {
+        @apply bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl overflow-hidden transition-all duration-300 hover:bg-gray-800/70 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20;
+    }
+    
+    .gradient-text {
+        @apply bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent;
+    }
+    
+    .glass-effect {
+        @apply bg-white/10 backdrop-blur-md border border-white/20;
+    }
+    
+    .btn-primary {
+        @apply bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25;
+    }
+    
+    .btn-secondary {
+        @apply bg-gray-800/50 hover:bg-gray-700/50 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 border border-gray-600/50 hover:border-purple-500/50;
+    }
+    
+    /* Focus states for accessibility */
+    .focus-visible {
+        @apply outline-none;
+    }
+    
+    .focus-visible:focus-visible {
+        @apply ring-2 ring-purple-500 ring-offset-2 ring-offset-gray-900;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fadeInLeft {
+    animation: fadeInLeft 0.6s ease-out;
+}
+
+.animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Loading skeleton */
+.skeleton {
+    @apply bg-gray-700/50 animate-pulse rounded;
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+}
+
+.line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+.line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+/* Responsive text */
+@media (max-width: 640px) {
+    .responsive-text {
+        font-size: 0.875rem;
+    }
 }
