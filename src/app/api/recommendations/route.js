@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getUserRecommendations } from '../../../lib/database'
 
+export const dynamic = 'force-dynamic';
 // GET /api/recommendations - Get user recommendations
 export async function GET(request) {
   try {
